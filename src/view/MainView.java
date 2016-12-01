@@ -46,7 +46,7 @@ public class MainView {
         input.nextLine();
 
         String username, password;
-        System.out.println("Velkommen til login\n");
+        System.out.println("\nVelkommen til login");
         System.out.println("Indtast brugernavn her:");
         username = input.nextLine();
         System.out.println("Indtast kodeord her:");
