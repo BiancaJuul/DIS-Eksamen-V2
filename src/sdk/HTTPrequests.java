@@ -107,5 +107,19 @@ public class HTTPrequests {
         return books;
     }
 
+    public static boolean createUser(User user) {
+        ClientResponse clientResponse = Connection.post(null, "/user/", new Gson().toJson(user));
+        if (clientResponse == null) {
+            System.out.println("no connection to server");
+        } else {
+            if (clientResponse.getStatus() == 200) {
+                return true;
+            }
+        }
+        return false;
+
+    }
+
+
 }
 

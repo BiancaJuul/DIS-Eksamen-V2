@@ -3,6 +3,7 @@ package view;
 import controller.MainController;
 import model.Book;
 import model.Curriculum;
+import model.User;
 import sdk.Connection;
 import sdk.HTTPrequests;
 //import sdk.services.UserService;
@@ -25,8 +26,12 @@ public class MenuView {
     }
 
     public void showMenu() {
+
         System.out.println("\n1) Print alle bøger ");
         System.out.println("2) Print priser på bestemt bog fra bestemt pensum ");
+        System.out.println("3) Opdater bruger ");
+        System.out.println("4) Slet bruger ");
+        System.out.println("5) Log ud");
 
         switch (input.nextInt()) {
             case 1:
@@ -35,7 +40,19 @@ public class MenuView {
             case 2:
                 printCurriculumList();
                 break;
+            case 3:
 
+                break;
+            case 4:
+  //              deleteUser();
+                break;
+            case 5:
+                mainController.setCurrentUser(null);
+                System.out.println("Du er nu logget ud.");
+                break;
+            default:
+                System.out.println("Forkert indtastet.");
+                break;
         }
     }
 
@@ -56,8 +73,7 @@ public class MenuView {
 
     public void printCurriculumList() {
 
-        input = new Scanner(System.in);
-        ArrayList<Curriculum> curriculums = HTTPrequests.getCurriculums();
+        ArrayList<Curriculum> curriculums = mainController.getCurriculumList();
         System.out.println("\nAktuelle pensumlister:");
         for (Curriculum curriculum : curriculums) {
             System.out.println("Id: \t \t" + curriculum.getCurriculumID() + "\nSkole: \t \t" + curriculum.getSchool() + "\nLinje: \t \t" + curriculum.getEducation() + "\nSemester: \t" + curriculum.getSemester() + "\n \n");
@@ -85,6 +101,12 @@ public class MenuView {
         }
         printBook();
     }
+
+ //   public void deleteUser() {
+//
+//    }
+
+
 }
 
 //    public void printBook(){
@@ -92,18 +114,6 @@ public class MenuView {
 //        Book book = MainController.getBook(input.nextInt());
 //        System.out.println("id: " + book.getBookID() + " title: " + book.getTitle());
 //    }
-
-
-
-
-//        System.out.println("Venligst login:");
-//        System.out.println("Indtast brugernavn");
-//     //   username = input.nextLine(); //hvorfor skal den have to?!?!
-//        String username = new Scanner(System.in).nextLine();
-//        System.out.println("Indtast kodeord");
-//        String password = new Scanner(System.in).nextLine();
-//
-//        this.userService.login()
 
 
 

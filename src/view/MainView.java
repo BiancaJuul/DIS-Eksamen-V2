@@ -1,6 +1,9 @@
 package view;
 
+import Encrypters.Digester;
+import com.google.gson.JsonObject;
 import controller.MainController;
+import jdk.nashorn.internal.runtime.PropertyMap;
 
 import java.util.Scanner;
 
@@ -19,30 +22,30 @@ public class MainView {
     }
 
     public void showMenu() {
-        System.out.println("Velkommen til Bookit\n");
-        System.out.println("Indtast 1 eller 2");
-        System.out.println("1) Login");
-        System.out.println("2) Opret bruger");
+        do {
+            System.out.println("Velkommen til Bookit\n");
+            System.out.println("Indtast 1 eller 2");
+            System.out.println("1) Login");
+            System.out.println("2) Opret bruger");
 
-        switch (input.nextInt()) {
-            case 1:
-                boolean authUser = loginMenu();
+            switch (input.nextInt()) {
+                case 1:
+                    loginMenu();
 
-                if (authUser)
-                    menuView.showMenu();
-                else
-                    System.out.println("Det indtastede brugernavn eller kodeord er forkert");
-                break;
-            case 2:
-                System.out.println("Opret ny bruger: ");
-                break;
-            default:
-                System.out.println("Venligst indtast 1 eller 2");
-                break;
-        }
+                    break;
+                case 2:
+                    createUser();
+
+                    break;
+                default:
+                    System.out.println("Venligst indtast 1 eller 2");
+                    break;
+            }
+        }while(true);
+
     }
 
-    private boolean loginMenu() {
+    private void loginMenu() {
         input.nextLine();
 
         String username, password;
@@ -52,7 +55,47 @@ public class MainView {
         System.out.println("Indtast kodeord her:");
         password = input.nextLine();
 
-        return mainController.authUser(username, password);
+        String hashedPassword = Digester.hashWithSalt(password);
+
+        boolean authUser = mainController.authUser(username, hashedPassword);
+
+        if (authUser)
+            menuView.showMenu();
+        else
+            System.out.println("Det indtastede brugernavn eller kodeord er forkert");
+
+    }
+
+    private void createUser() {
+        input.nextLine();
+
+        String firstName, lastName, username, password, email, usertype;
+
+        System.out.println("Opret ny bruger: ");
+        System.out.println("Indtast fornavn: ");
+        firstName = input.nextLine();
+
+        System.out.println("Indtast efternavn: ");
+        lastName = input.nextLine();
+
+        System.out.println("Indtast brugernavn: ");
+        username = input.nextLine();
+
+        System.out.println("Indtast kodeord: ");
+        password = input.nextLine();
+
+        System.out.println("Indtast email adresse: ");
+        email = input.nextLine();
+
+//        System.out.println("Usertype");
+//        usertype = input.nextLine();
+
+        boolean created = mainController.createUser(firstName, lastName, username, Digester.hashWithSalt(password), email);
+
+        if(created)
+            System.out.println("Din profil er oprettet - du kan nu logge ind\n");
+        else
+            System.out.println("Opretelsen fejlede");
 
     }
 }

@@ -20,23 +20,12 @@ public class MainController {
 
     public MainController() {
         new MainView(this).showMenu();
-        //  this.bookView = new BookView(this);
-        //  this.userView = new UserView(this);
     }
 
-    public BookView getBookView() {
-        return bookView;
-    }
-
-    public UserView getUserView() {
-        return userView;
-    }
-
-
-    public boolean authUser(String username, String password) {
+    public boolean authUser(String username, String hashedPassword) {
         User user = new User();
         user.setUsername(username);
-        user.setPassword(password);
+        user.setPassword(hashedPassword);
         User userResponse = HTTPrequests.authorizeLogin(user);
 
         if (userResponse != null) {
@@ -49,27 +38,34 @@ public class MainController {
     public ArrayList<Book> getBooks() {
         return HTTPrequests.getBooks();
     }
+//    public ArrayList<Book> getBook() {
+//        return HTTPrequests.getBook();
+//
+//    }
+
+    public ArrayList<Curriculum> getCurriculumList() {
+        return HTTPrequests.getCurriculums();
+    }
+
+    public boolean createUser(String firstName, String lastName, String username, String password, String email) {
+        User user = new User();
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setEmail(email);
+
+        return HTTPrequests.createUser(user);
+    }
+
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
+    }
+    public void deleteUser (){
+
+
+    }
 }
 
-
-//    public ArrayList<Book> getBook (){
-//        return HTTPrequests.getBook();
-//    }
-
-//    public ArrayList<Book> getCurriculum(String school, String education, int semester) {
-//        ArrayList <Curriculum>();
-//        Curriculum foundCurriculum = null;
-//
-//
-//        for (Curriculum curriculum : curriculums) {
-//            if (curriculum.getSchool().equalsIgnoreCase("CBS") && curriculum.getEducation().equalsIgnoreCase(education) && curriculum.getSemester() == semester){
-//                foundCurriculum = curriculum;
-//            }
-//        }
-//
-//        if(foundCurriculum != null)
-//            return HTTPrequests.getCurriculumBooks(foundCurriculum.getCurriculumID())
-//            else return null;
-//    }
 
 
