@@ -4,6 +4,7 @@ import controller.MainController;
 import model.Book;
 import model.Curriculum;
 import model.User;
+import model.UserLogin;
 import sdk.Connection;
 import sdk.HTTPrequests;
 //import sdk.services.UserService;
@@ -44,7 +45,7 @@ public class MenuView {
 
                 break;
             case 4:
-  //              deleteUser();
+                deleteUser();
                 break;
             case 5:
                 mainController.setCurrentUser(null);
@@ -55,6 +56,26 @@ public class MenuView {
                 break;
         }
     }
+    public void deleteUser() {
+        System.out.println("hej");
+
+
+        boolean isDeleted = HTTPrequests.deleteUser(mainController.getCurrentUser().getUserID());
+        if (isDeleted){
+            mainController.setCurrentUser(null);
+            System.out.println("Slettet.");
+        } else {
+            System.out.println("Test virker ikke");
+        }
+
+//        boolean authUser = mainController.authUser(username, hashedPassword);
+//
+//        if (authUser)
+//            menuView.showMenu();
+//        else
+//
+
+        }
 
     public void printBooks() {
         ArrayList<Book> books = mainController.getBooks();
@@ -101,11 +122,6 @@ public class MenuView {
         }
         printBook();
     }
-
- //   public void deleteUser() {
-//
-//    }
-
 
 }
 

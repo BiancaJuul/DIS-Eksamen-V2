@@ -69,7 +69,7 @@ public class HTTPrequests {
         return book;
     }
 
-    public static ArrayList<Curriculum> getCurriculums(){
+    public static ArrayList<Curriculum> getCurriculums() {
         ClientResponse clientResponse = Connection.get("/curriculum");
         ArrayList<Curriculum> curriculums = null;
 
@@ -79,14 +79,14 @@ public class HTTPrequests {
             String encryptedJson = clientResponse.getEntity(String.class);
             if (clientResponse.getStatus() == 200) {
                 String decryptedJson = Crypter.encryptDecryptXOR(encryptedJson);
-                curriculums = new Gson().fromJson(decryptedJson, new TypeToken<ArrayList<Curriculum>>(){
-                        }.getType());
+                curriculums = new Gson().fromJson(decryptedJson, new TypeToken<ArrayList<Curriculum>>() {
+                }.getType());
             } else {
                 System.out.println("Server error");
             }
         }
         return curriculums;
-        }
+    }
 
     public static ArrayList<Book> getCurriculumBooks(int curriculumId) {
         ClientResponse clientResponse = Connection.get("/curriculum/" + curriculumId + "/books");
@@ -120,6 +120,39 @@ public class HTTPrequests {
 
     }
 
-
+    public static boolean deleteUser(int id) {
+        ClientResponse clientResponse = Connection.delete(null, "/user/" + id);
+        if (clientResponse == null) {
+            System.out.println("no connection to server");
+        } else {
+            if (clientResponse.getStatus() == 200) {
+                System.out.println("Virker");
+                return true;
+            }
+        }
+        System.out.println("false");
+        return false;
+    }
 }
+
+////    public static ArrayList<User> getUsers() {
+////        ClientResponse clientResponse = Connection.get("user/");
+////        ArrayList<User> users = null;
+////
+////        if (clientResponse == null) {
+////            System.out.println("No sdk");
+////        } else {
+////            String encryptedJson = clientResponse.getEntity(String.class);
+////
+////            if (clientResponse.getStatus() == 200) {
+////                String decryptedJson = Crypter.encryptDecryptXOR(encryptedJson);
+////                users = new Gson().fromJson(decryptedJson, new TypeToken<ArrayList<User>>() {
+////                }.getType());
+////            } else {
+////                System.out.println("Server error");
+////            }
+////        }
+////        return users;
+////    }
+//}
 

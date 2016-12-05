@@ -45,6 +45,21 @@ public class Connection {
         }
         return clientResponse;
     }
+
+    public static ClientResponse delete(String token, String path) {
+
+        ClientResponse clientResponse = null;
+        try {
+            WebResource webResource = client
+                    .resource("http://localhost:8080/server2_0_war_exploded/")
+                    .path(path); //book
+
+            clientResponse = webResource.accept("application/json").delete(ClientResponse.class);
+        } catch (UniformInterfaceException | ClientHandlerException e) {
+            e.printStackTrace();
+        }
+        return clientResponse;
+    }
 }
 
 

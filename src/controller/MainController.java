@@ -61,10 +61,15 @@ public class MainController {
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
     }
-    public void deleteUser (){
 
-
+    public User getCurrentUser(){
+        return currentUser;
     }
+
+//    public boolean deleteUser (){
+//
+//        return HTTPrequests.deleteUser(int);
+//    }
 }
 
 
