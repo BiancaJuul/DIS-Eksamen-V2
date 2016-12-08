@@ -62,15 +62,29 @@ public class MainController {
         this.currentUser = currentUser;
     }
 
-    public User getCurrentUser(){
+    public User getCurrentUser() {
         return currentUser;
     }
+
+    public boolean updateUser(String firstName, String lastName, String username, String email) {
+        User user = new User();
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setUsername(username);
+  //      user.setPassword(password);
+        user.setEmail(email);
+
+        return HTTPrequests.updateUser(getCurrentUser().getUserID(), user);
+    }
+
+}
+
 
 //    public boolean deleteUser (){
 //
 //        return HTTPrequests.deleteUser(int);
 //    }
-}
+
 
 
 

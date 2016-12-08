@@ -38,7 +38,7 @@ public class MainView {
 
                     break;
                 default:
-                    System.out.println("Venligst indtast 1 eller 2");
+                    System.out.println("Venligst indtast 1 eller 2\n------------------------------------------------------------------------");
                     break;
             }
         }while(true);
@@ -62,14 +62,14 @@ public class MainView {
         if (authUser)
             menuView.showMenu();
         else
-            System.out.println("Det indtastede brugernavn eller kodeord er forkert");
+            System.out.println("\nDet indtastede brugernavn eller kodeord er forkert\n------------------------------------------------------------------------");
 
     }
 
     private void createUser() {
         input.nextLine();
 
-        String firstName, lastName, username, password, email, usertype;
+        String firstName, lastName, username, password, email;
 
         System.out.println("Opret ny bruger: ");
         System.out.println("Indtast fornavn: ");
@@ -93,9 +93,9 @@ public class MainView {
         boolean created = mainController.createUser(firstName, lastName, username, Digester.hashWithSalt(password), email);
 
         if(created)
-            System.out.println("Din profil er oprettet - du kan nu logge ind\n");
+            System.out.println("Din profil er oprettet - du kan nu logge ind med den opdateret bruger\n------------------------------------------------------------------------");
         else
-            System.out.println("Opretelsen fejlede");
+            System.out.println("Opretelsen fejlede\n------------------------------------------------------------------------");
 
     }
 }

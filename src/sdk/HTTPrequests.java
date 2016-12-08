@@ -126,11 +126,22 @@ public class HTTPrequests {
             System.out.println("no connection to server");
         } else {
             if (clientResponse.getStatus() == 200) {
-                System.out.println("Virker");
+                System.out.println("Brugeren er nu slettet");
                 return true;
             }
         }
-        System.out.println("false");
+        return false;
+    }
+    public static boolean updateUser(int id, User user) {
+        ClientResponse clientResponse = Connection.put(null, "/user/" + id, new Gson().toJson(user));
+        if (clientResponse == null) {
+            System.out.println("no connection to server");
+        } else {
+            if (clientResponse.getStatus() == 200) {
+                System.out.println("Brugeren er nu oprettet");
+                return true;
+            }
+        }
         return false;
     }
 }
