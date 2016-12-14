@@ -8,9 +8,10 @@ public class Curriculum {
     String school, education;
     int semester, curriculumID;
 
-    public Curriculum(){
+    public Curriculum() {
 
     }
+
     public Curriculum(int curriculumID, String school, String education, int semester) {
         this.curriculumID = curriculumID;
         this.school = school;
@@ -18,7 +19,7 @@ public class Curriculum {
         this.semester = semester;
     }
 
-    public Curriculum( String school, String education, int semester) {
+    public Curriculum(String school, String education, int semester) {
         this.school = school;
         this.education = education;
         this.semester = semester;
@@ -57,7 +58,6 @@ public class Curriculum {
     }
 
     /**
-     *
      * @return
      */
     @Override

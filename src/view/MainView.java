@@ -1,9 +1,6 @@
 package view;
 
-import Encrypters.Digester;
-import com.google.gson.JsonObject;
-import controller.MainController;
-import jdk.nashorn.internal.runtime.PropertyMap;
+import controller.Controller;
 
 import java.util.Scanner;
 
@@ -11,13 +8,13 @@ import java.util.Scanner;
  * Created by biancajuul-hansen on 29/11/2016.
  */
 public class MainView {
-    MainController mainController;
+    Controller controller;
     MenuView menuView;
     private Scanner input;
 
-    public MainView(MainController mainController) {
-        this.mainController = mainController;
-        menuView = new MenuView(mainController);
+    public MainView(Controller controller) {
+        this.controller = controller;
+        menuView = new MenuView(controller);
         input = new Scanner(System.in);
     }
 
@@ -41,7 +38,7 @@ public class MainView {
                     System.out.println("Venligst indtast 1 eller 2\n------------------------------------------------------------------------");
                     break;
             }
-        }while(true);
+        } while (true);
 
     }
 
@@ -55,9 +52,8 @@ public class MainView {
         System.out.println("Indtast kodeord her:");
         password = input.nextLine();
 
-        String hashedPassword = Digester.hashWithSalt(password);
 
-        boolean authUser = mainController.authUser(username, hashedPassword);
+        boolean authUser = controller.authUser(username, password);
 
         if (authUser)
             menuView.showMenu();
@@ -71,7 +67,7 @@ public class MainView {
 
         String firstName, lastName, username, password, email;
 
-        System.out.println("Opret ny bruger: ");
+        System.out.println("\nOprettelse af ny bruger:");
         System.out.println("Indtast fornavn: ");
         firstName = input.nextLine();
 
@@ -87,15 +83,12 @@ public class MainView {
         System.out.println("Indtast email adresse: ");
         email = input.nextLine();
 
-//        System.out.println("Usertype");
-//        usertype = input.nextLine();
+        boolean created = controller.createUser(firstName, lastName, username, password, email);
 
-        boolean created = mainController.createUser(firstName, lastName, username, Digester.hashWithSalt(password), email);
-
-        if(created)
-            System.out.println("Din profil er oprettet - du kan nu logge ind med den opdateret bruger\n------------------------------------------------------------------------");
+        if (created)
+            System.out.println("Din profil er oprettet - du kan nu logge ind med den ny oprettet bruger\n------------------------------------------------------------------------\n");
         else
-            System.out.println("Opretelsen fejlede\n------------------------------------------------------------------------");
+            System.out.println("Opretelsen fejlede\n------------------------------------------------------------------------\n");
 
     }
 }

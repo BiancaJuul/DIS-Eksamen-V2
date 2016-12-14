@@ -1,11 +1,11 @@
-import controller.MainController;
+import controller.Controller;
 import sdk.Config;
 
 public class Main {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Config.initConfig();
-        new MainController();
+        new Controller();
 
     }
 }

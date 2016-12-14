@@ -30,7 +30,6 @@ public class Config {
     }
 
 
-
     public static String getServerUrl() {
         return serverUrl;
     }

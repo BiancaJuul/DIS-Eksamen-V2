@@ -4,32 +4,28 @@ import model.Book;
 import model.Curriculum;
 import model.User;
 import sdk.HTTPrequests;
-import view.BookView;
 import view.MainView;
-import view.UserView;
 
 import java.util.ArrayList;
 
 /**
  * Created by biancajuul-hansen on 23/11/2016.
  */
-public class MainController {
-    private BookView bookView;
-    private UserView userView;
+public class Controller {
     private User currentUser;
 
-    public MainController() {
+    public Controller() {
         new MainView(this).showMenu();
     }
 
-    public boolean authUser(String username, String hashedPassword) {
+    public boolean authUser(String username, String password) {
         User user = new User();
         user.setUsername(username);
-        user.setPassword(hashedPassword);
-        User userResponse = HTTPrequests.authorizeLogin(user);
+        user.setPassword(password);
+        user = HTTPrequests.authorizeLogin(user);
 
-        if (userResponse != null) {
-            currentUser = userResponse;
+        if (user != null) {
+            currentUser = user;
             return true;
         } else
             return false;
@@ -38,10 +34,6 @@ public class MainController {
     public ArrayList<Book> getBooks() {
         return HTTPrequests.getBooks();
     }
-//    public ArrayList<Book> getBook() {
-//        return HTTPrequests.getBook();
-//
-//    }
 
     public ArrayList<Curriculum> getCurriculumList() {
         return HTTPrequests.getCurriculums();
@@ -67,24 +59,28 @@ public class MainController {
     }
 
     public boolean updateUser(String firstName, String lastName, String username, String email) {
-        User user = new User();
-        user.setFirstName(firstName);
-        user.setLastName(lastName);
-        user.setUsername(username);
-  //      user.setPassword(password);
-        user.setEmail(email);
 
-        return HTTPrequests.updateUser(getCurrentUser().getUserID(), user);
+        currentUser.setFirstName(firstName);
+        currentUser.setLastName(lastName);
+        currentUser.setUsername(username);
+        currentUser.setEmail(email);
+        boolean updated = HTTPrequests.updateUser(currentUser);
+
+        if (updated)
+            currentUser = null;
+
+        return updated;
+
     }
 
+    public Book getBook(int bookId) {
+        return HTTPrequests.getBook(bookId);
+    }
+
+    public boolean deleteUser() {
+        boolean deleted = HTTPrequests.deleteUser(currentUser);
+        if (deleted)
+            currentUser = null;
+        return deleted;
+    }
 }
-
-
-//    public boolean deleteUser (){
-//
-//        return HTTPrequests.deleteUser(int);
-//    }
-
-
-
-

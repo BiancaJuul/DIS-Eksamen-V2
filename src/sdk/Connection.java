@@ -22,9 +22,11 @@ public class Connection {
         try {
             WebResource webResource = client
                     .resource("http://localhost:8080/server2_0_war_exploded/")
-                    .path(path); //book
+                    .path(path);
 
-            clientResponse = webResource.accept("application/json").get(ClientResponse.class);
+            clientResponse = webResource
+                    .accept("application/json")
+                    .get(ClientResponse.class);
         } catch (UniformInterfaceException | ClientHandlerException e) {
             e.printStackTrace();
         }
@@ -38,7 +40,9 @@ public class Connection {
                     .resource("http://localhost:8080/server2_0_war_exploded/")
                     .path(path);
 
-            clientResponse = webResource.accept("application/json").post(ClientResponse.class, json);
+            clientResponse = webResource
+                    .accept("application/json")
+                    .post(ClientResponse.class, json);
 
         } catch (UniformInterfaceException | ClientHandlerException e) {
             e.printStackTrace();
@@ -52,9 +56,13 @@ public class Connection {
         try {
             WebResource webResource = client
                     .resource("http://localhost:8080/server2_0_war_exploded/")
-                    .path(path); //book
+                    .path(path);
 
-            clientResponse = webResource.accept("application/json").delete(ClientResponse.class);
+            clientResponse = webResource
+                    .accept("application/json")
+                    .header("authorization", token)
+                    .delete(ClientResponse.class);
+
         } catch (UniformInterfaceException | ClientHandlerException e) {
             e.printStackTrace();
         }
@@ -69,7 +77,10 @@ public class Connection {
                     .resource("http://localhost:8080/server2_0_war_exploded/")
                     .path(path);
 
-            clientResponse = webResource.accept("application/json").put(ClientResponse.class, json);
+            clientResponse = webResource
+                    .accept("application/json")
+                    .header("authorization", token)
+                    .put(ClientResponse.class, json);
         } catch (UniformInterfaceException | ClientHandlerException e) {
             e.printStackTrace();
         }
@@ -77,5 +88,3 @@ public class Connection {
     }
 
 }
-
-
