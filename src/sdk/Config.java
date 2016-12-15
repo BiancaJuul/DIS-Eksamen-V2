@@ -8,6 +8,8 @@ import java.io.FileReader;
 /**
  * Created by biancajuul-hansen on 17/11/2016.
  */
+
+//Når programmet køres i Main.java, bliver programmet sendt hertil og starter op, ved JsonParser, der sender videre til Config.json, hvor serverurl'en ligger
 public class Config {
     private static String serverUrl;
 

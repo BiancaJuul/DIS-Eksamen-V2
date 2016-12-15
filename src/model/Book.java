@@ -3,6 +3,7 @@ package model;
 /**
  * Variabler til Book oprettes samt deres getters/setters.
  */
+//Denne model klasse er taget fra serveren, så vi har alle variabler tilgængelige, samt opretter getter og setters
 
 public class Book {
 

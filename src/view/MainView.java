@@ -7,6 +7,8 @@ import java.util.Scanner;
 /**
  * Created by biancajuul-hansen on 29/11/2016.
  */
+
+//Denne klasse er det første view brugeren får
 public class MainView {
     Controller controller;
     MenuView menuView;
@@ -18,6 +20,7 @@ public class MainView {
         input = new Scanner(System.in);
     }
 
+    //Brugeren får nedenfor muligheden for at logge ind eller oprette brugeren ellers vil jeg ikke gå resten af denne klasse, da koden er ret basic
     public void showMenu() {
         do {
             System.out.println("Velkommen til Bookit\n");

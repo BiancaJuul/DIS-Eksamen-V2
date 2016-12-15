@@ -11,6 +11,8 @@ import java.util.ArrayList;
 /**
  * Created by biancajuul-hansen on 23/11/2016.
  */
+
+//Denne klasse er her klientens "logik" er, som brugeren indtaster i menuerne går her igennem og sendes så videre til HTTPRequest.java og efterfølgende til Connection.java, der så laver kaldet til serveren.
 public class Controller {
     private User currentUser;
 

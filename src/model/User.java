@@ -4,6 +4,8 @@ package model;
  * Variabler til User oprettes samt deres getters/setters.
  */
 
+//Denne model klasse er taget fra serveren, så vi har alle variabler tilgængelige, samt opretter getter og setters
+
 public class User {
     int userID;
     String firstName, lastName, userName, email, password, token;

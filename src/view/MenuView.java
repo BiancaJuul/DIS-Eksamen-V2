@@ -12,6 +12,9 @@ import java.util.Scanner;
 /**
  * Created by biancajuul-hansen on 24/11/2016.
  */
+
+//Denne klasse er menuen man får vist efter man er logget ind. Koden i denne klasse er også ret basic.
+    //Man henter informationerne igennem controlleren, der så går videre derfra
 public class MenuView {
 
     private Controller controller;

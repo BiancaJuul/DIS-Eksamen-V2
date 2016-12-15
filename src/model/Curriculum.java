@@ -3,6 +3,8 @@ package model;
 /**
  * Variabler til Curriculum oprettes samt deres getters/setters.
  */
+
+//Denne model klasse er taget fra serveren, så vi har alle variabler tilgængelige, samt opretter getter og setters
 public class Curriculum {
 
     String school, education;

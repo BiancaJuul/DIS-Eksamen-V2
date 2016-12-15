@@ -4,9 +4,8 @@ package Encrypters;
  * Created by Tastum on 17/10/2016.
  */
 
-
+// Denne klasse er kopieret fra vores server og er her vores XOR krypterings metode ligger
 public class Crypter {
-
 
     public static String encryptDecryptXOR(String input) {
         char[] key = {'D', 'E', 'F'}; //Dette kan være alle andre bogstaver end a,b og c.
