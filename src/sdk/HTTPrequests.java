@@ -146,7 +146,7 @@ public class HTTPrequests {
         return false;
     }
 
-    //Denne ligner meget slet, den opdaterer bare brugeren i stedet for og benytter derfor put. Den fungerer på samme måde med token og id. Denne krypterer bare, det gør slet ikke
+    //Denne ligner meget slet, den opdaterer bare brugeren i stedet for og benytter derfor put. Den fungerer på s
     public static boolean updateUser(User currentUser) {
         String encryptedJson = Crypter.encryptDecryptXOR(new Gson().toJson(currentUser));
         ClientResponse clientResponse = Connection.put(currentUser.getToken(), "/user/" + currentUser.getUserID(), encryptedJson);
